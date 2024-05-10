@@ -1,13 +1,13 @@
-package com.apaz.studentregistrations;
+package com.apaz.studentenrollments;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StudentRegistrationsApplication {
+public class StudentenrollmentsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StudentRegistrationsApplication.class, args);
+		SpringApplication.run(StudentenrollmentsApplication.class, args);
 	}
 
 }
