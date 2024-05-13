@@ -6,7 +6,8 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -16,14 +17,14 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Enrollment {
+public class Enrollment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_code")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
@@ -31,8 +32,8 @@ public class Enrollment {
     private Course course;
 
     @CreationTimestamp
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate date;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
+    private LocalDateTime date;
 
     @Override
     public final boolean equals(Object o) {

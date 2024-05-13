@@ -2,13 +2,14 @@ package com.apaz.studentenrollments.domain;
 
 import com.apaz.studentenrollments.domain.enums.RoleType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -18,7 +19,8 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@JsonIgnoreProperties(value = {"password"}, allowSetters = true)
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,15 +34,16 @@ public class User {
 
     private String email;
 
+    @Enumerated(EnumType.STRING)
     private RoleType role;
 
     @CreationTimestamp
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate creationDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
+    private LocalDateTime creationDate;
 
-    @OneToMany(mappedBy = "user")
-    @ToString.Exclude
-    private List<Enrollment> enrollments;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "user")
+//    private List<Enrollment> enrollments;
 
     @Override
     public final boolean equals(Object o) {

@@ -7,9 +7,8 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.proxy.HibernateProxy;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,7 +18,7 @@ import java.util.Objects;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Course {
+public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,17 +32,19 @@ public class Course {
 
     private String description;
 
+    @Enumerated(EnumType.STRING)
     private StatusCourseEnum status;
 
+    @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     private LocalDateTime creationDate;
 
-    @CreationTimestamp
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate inactivationDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
+    private LocalDateTime inactivationDate;
 
-    @OneToMany(mappedBy = "course")
-    @ToString.Exclude
-    private List<com.apaz.studentenrollments.domain.Enrollment> enrollments;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "course")
+//    private List<Enrollment> enrollments;
 
     @Override
     public final boolean equals(Object o) {

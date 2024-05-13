@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotNull;
 public record EnrollmentRequest(
 
         @NotNull
-        Long userId,
+        String username,
 
         @NotNull
-        Long courseId
+        String courseCode
 ) {
 }
