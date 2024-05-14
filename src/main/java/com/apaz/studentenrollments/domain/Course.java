@@ -28,7 +28,9 @@ public class Course implements Serializable {
 
     private String code;
 
-    private String instructor;
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private User instructor;
 
     private String description;
 

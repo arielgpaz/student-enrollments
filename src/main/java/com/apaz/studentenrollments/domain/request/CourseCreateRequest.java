@@ -13,7 +13,7 @@ public record CourseCreateRequest(
         String code,
 
         @NotBlank
-        String instructor,
+        String instructorUsername,
 
         String description
 ) {

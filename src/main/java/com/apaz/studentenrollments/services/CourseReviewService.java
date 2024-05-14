@@ -37,7 +37,7 @@ public class CourseReviewService {
                      Description: %s
                      """.formatted(course.getName(), request.rating(), request.description());
 
-            emailSender.send(course.getInstructor(), "You received a course review!", body);
+            emailSender.send(course.getInstructor().getEmail(), "You received a course review!", body);
         }
 
         return courseReviewRepository.save(Review.builder().user(user).course(course).rating(request.rating()).description(request.description()).build());

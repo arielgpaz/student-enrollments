@@ -14,12 +14,13 @@ CREATE TABLE IF NOT EXISTS `course`
     `id`                BIGINT                      NOT NULL AUTO_INCREMENT,
     `name`              VARCHAR(255)                NOT NULL,
     `code`              VARCHAR(255)                NOT NULL UNIQUE,
-    `instructor`        VARCHAR(255)                NOT NULL,
+    `instructor_id`     BIGINT                NOT NULL,
     `description`       TEXT,
     `status`            ENUM ('ACTIVE', 'INACTIVE') NOT NULL DEFAULT 'ACTIVE',
     `creation_date`     DATETIME                    NOT NULL,
     `inactivation_date` DATETIME,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (instructor_id) REFERENCES user (id)
 );
 
 CREATE TABLE IF NOT EXISTS `enrollment`
