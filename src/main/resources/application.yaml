@@ -1,6 +1,12 @@
 spring:
   application:
     name: student-enrollments
+  flyway:
+    user: se_db_user
+    password: se_db_2024
+    schemas: se_db
+    url: ${FLYWAY_URL:jdbc:mysql://localhost:3306/se_db}
+    locations: filesystem:db/migration
 
   datasource:
     url: jdbc:mysql://localhost:3306/se_db?allowPublicKeyRetrieval=true

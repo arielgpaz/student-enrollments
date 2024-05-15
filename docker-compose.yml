@@ -1,20 +1,20 @@
 version: '2'
 
 services:
-#  student-enrollments:
-#    image: 'student-enrollments:1.0'
-#    build:
-#      context: .
-#    container_name: student-enrollments
-#    ports:
-#      - '8080:8080'
-#    depends_on:
-#      - se_db
-#    environment:
-#      - SPRING_DATASOURCE_URL=jdbc:mysql://se_db:3306/se_db
-#      - SPRING_DATASOURCE_USERNAME=se_db_user
-#      - SPRING_DATASOURCE_PASSWORD=se_db_2024
-#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  student-enrollments:
+    image: 'student-enrollments:1.0.0'
+    build:
+      context: .
+    container_name: student-enrollments
+    ports:
+      - '8080:8080'
+    depends_on:
+      - se_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://se_db:3306/se_db
+      - SPRING_DATASOURCE_USERNAME=se_db_user
+      - SPRING_DATASOURCE_PASSWORD=se_db_2024
+      - FLYWAY_URL=jdbc:mysql://se_db:3306/se_db
 
   se_db:
     image: "mysql:8.0"
