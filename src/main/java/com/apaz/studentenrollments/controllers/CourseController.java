@@ -12,7 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("course")
+@RequestMapping("courses")
 @RequiredArgsConstructor
 public class CourseController {
 
