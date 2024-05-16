@@ -4,6 +4,7 @@ import com.apaz.studentenrollments.domain.Review;
 import com.apaz.studentenrollments.domain.request.ReviewRequest;
 import com.apaz.studentenrollments.domain.responses.NpsReportResponse;
 import com.apaz.studentenrollments.services.ReviewService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @PostMapping()
-    public Review reviewCourse(@RequestBody ReviewRequest request) {
+    public Review reviewCourse(@RequestBody @Valid ReviewRequest request) {
         return reviewService.reviewCourse(request);
     }
 

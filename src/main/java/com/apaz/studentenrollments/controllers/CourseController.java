@@ -4,6 +4,7 @@ import com.apaz.studentenrollments.domain.Course;
 import com.apaz.studentenrollments.domain.enums.StatusCourseEnum;
 import com.apaz.studentenrollments.domain.request.CourseCreateRequest;
 import com.apaz.studentenrollments.services.CourseService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +21,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping
-    public ResponseEntity<Course> createCourse(@RequestBody CourseCreateRequest request) {
+    public ResponseEntity<Course> createCourse(@RequestBody @Valid CourseCreateRequest request) {
         return ResponseEntity.ok(courseService.createCourse(request));
     }
 

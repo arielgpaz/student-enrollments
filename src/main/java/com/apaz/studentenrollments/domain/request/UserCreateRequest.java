@@ -1,10 +1,7 @@
 package com.apaz.studentenrollments.domain.request;
 
 import com.apaz.studentenrollments.domain.enums.RoleType;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 
 public record UserCreateRequest(
 
@@ -13,6 +10,7 @@ public record UserCreateRequest(
 
         @NotBlank(message = "O username do usuário deve ser informado.")
         @Pattern(regexp = "^[a-z]+$", message = "Username deve conter apenas caracteres minúsculos, sem numerais e sem espaços.")
+        @Size(max = 20, message = "O username pode ter no máximo 20 caracteres.")
         String username,
 
         @NotBlank(message = "A senha do usuário deve ser informada.")

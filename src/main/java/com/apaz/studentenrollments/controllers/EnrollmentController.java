@@ -3,6 +3,7 @@ package com.apaz.studentenrollments.controllers;
 import com.apaz.studentenrollments.domain.Enrollment;
 import com.apaz.studentenrollments.domain.request.EnrollmentRequest;
 import com.apaz.studentenrollments.services.EnrollmentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class EnrollmentController {
     private final EnrollmentService enrollmentService;
 
     @PostMapping
-    public ResponseEntity<Enrollment> enroll(@RequestBody EnrollmentRequest request) {
+    public ResponseEntity<Enrollment> enroll(@RequestBody @Valid EnrollmentRequest request) {
         return ResponseEntity.ok(enrollmentService.enroll(request));
     }
 
