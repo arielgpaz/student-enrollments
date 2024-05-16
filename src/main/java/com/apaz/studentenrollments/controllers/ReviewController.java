@@ -5,6 +5,7 @@ import com.apaz.studentenrollments.domain.request.ReviewRequest;
 import com.apaz.studentenrollments.domain.responses.NpsReportResponse;
 import com.apaz.studentenrollments.services.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,7 +21,8 @@ public class ReviewController {
     }
 
     @GetMapping("report")
-    public NpsReportResponse npsReportGenerate() {
-        return reviewService.npsReportGenerate();
+    public ResponseEntity<NpsReportResponse> npsReportGenerate() {
+        return ResponseEntity.ok(reviewService.npsReportGenerate());
     }
+
 }

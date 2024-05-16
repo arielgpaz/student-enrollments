@@ -1,13 +1,13 @@
 package com.apaz.studentenrollments.domain.request;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 public record EnrollmentRequest(
 
-        @NotNull
+        @NotBlank(message = "O nome do aluno deve ser informado.")
         String username,
 
-        @NotNull
+        @NotBlank(message = "O código do curso deve ser informado.")
         String courseCode
 ) {
 }

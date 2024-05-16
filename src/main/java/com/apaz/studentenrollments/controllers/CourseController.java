@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,24 +20,25 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping
-    public Course createCourse(@RequestBody CourseCreateRequest request) {
-        return courseService.createCourse(request);
+    public ResponseEntity<Course> createCourse(@RequestBody CourseCreateRequest request) {
+        return ResponseEntity.ok(courseService.createCourse(request));
     }
 
     @DeleteMapping
-    public Course inactivateCourse(@RequestParam String code) {
-        return courseService.inactivateCourse(code);
+    public ResponseEntity<Course> inactivateCourse(@RequestParam String code) {
+        return ResponseEntity.ok(courseService.inactivateCourse(code));
     }
 
     @PutMapping
-    public Course reactivateCourse(@RequestParam String code) {
-        return courseService.reactivateCourse(code);
+    public ResponseEntity<Course> reactivateCourse(@RequestParam String code) {
+        return ResponseEntity.ok(courseService.reactivateCourse(code));
     }
 
     @GetMapping
-    public Page<Course> getCoursesByStatus(
+    public ResponseEntity<Page<Course>> getCoursesByStatus(
             @PageableDefault(sort = "name", direction = Sort.Direction.ASC) Pageable pageable,
             @RequestParam StatusCourseEnum status) {
-        return courseService.getCoursesByStatus(pageable, status);
+        return ResponseEntity.ok(courseService.getCoursesByStatus(pageable, status));
     }
+
 }

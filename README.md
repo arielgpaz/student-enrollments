@@ -37,8 +37,7 @@ através do `docker-compose.yaml`, basta seguir os passos abaixo:
     1. Permitir usuário avaliar apenas o curso que ele estiver matriculado;
     2. Não permitir matrícula do instrutor em seus próprios cursos...
 2. Implementar novas funcionalidades:
-    1. Criar tratamentos para exceptions que permitem retornos mais explicativos dos erros (ExceptionHandler);
-    2. Completar o CRUD para usuários, cursos, matrículas e avaliações;
-    3. Criptografar senhas no banco de dados;
-    4. Implementar o Spring Security com os acessos baseados em roles;
-    5. Gerar o relatório de NPS através de um arquivo `.csv` e/ou `.pdf`...
+    1. Completar o CRUD para usuários, cursos, matrículas e avaliações;
+    2. Criptografar senhas no banco de dados;
+    3. Implementar o Spring Security com os acessos baseados em roles;
+    4. Gerar o relatório de NPS através de um arquivo `.csv` e/ou `.pdf` (Está sendo gerado e retornando em JSON)

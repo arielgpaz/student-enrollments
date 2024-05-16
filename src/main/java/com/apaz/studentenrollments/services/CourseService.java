@@ -1,7 +1,6 @@
 package com.apaz.studentenrollments.services;
 
 import com.apaz.studentenrollments.domain.Course;
-import com.apaz.studentenrollments.domain.User;
 import com.apaz.studentenrollments.domain.enums.StatusCourseEnum;
 import com.apaz.studentenrollments.domain.request.CourseCreateRequest;
 import com.apaz.studentenrollments.exceptions.CodeAlreadyInUseException;
@@ -29,7 +28,7 @@ public class CourseService {
             throw new CodeAlreadyInUseException(request.code());
         }
 
-        User instructor = userRepository.findByUsername(request.instructorUsername())
+        var instructor = userRepository.findByUsername(request.instructorUsername())
                 .orElseThrow( () -> new UserNotFoundException(request.instructorUsername()));
 
         return courseRepository.save(Course.builder()
@@ -43,7 +42,7 @@ public class CourseService {
 
     public Course inactivateCourse(String code) {
 
-        Course course = courseRepository.findByCode(code)
+        var course = courseRepository.findByCode(code)
                 .orElseThrow(() -> new CourseNotFoundException(code));
 
         course.setStatus(StatusCourseEnum.INACTIVE);
@@ -54,7 +53,7 @@ public class CourseService {
 
     public Course reactivateCourse(String code) {
 
-        Course course = courseRepository.findByCode(code)
+        var course = courseRepository.findByCode(code)
                 .orElseThrow(() -> new CourseNotFoundException(code));
 
         course.setStatus(StatusCourseEnum.ACTIVE);

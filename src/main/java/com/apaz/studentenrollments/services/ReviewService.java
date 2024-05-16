@@ -2,7 +2,6 @@ package com.apaz.studentenrollments.services;
 
 import com.apaz.studentenrollments.domain.Course;
 import com.apaz.studentenrollments.domain.Review;
-import com.apaz.studentenrollments.domain.User;
 import com.apaz.studentenrollments.domain.enums.StatusCourseEnum;
 import com.apaz.studentenrollments.domain.request.ReviewRequest;
 import com.apaz.studentenrollments.domain.responses.CourseNpsResponse;
@@ -33,10 +32,10 @@ public class ReviewService {
 
     public Review reviewCourse(ReviewRequest request) {
 
-        User user = userRepository.findByUsername(request.username())
+        var user = userRepository.findByUsername(request.username())
                 .orElseThrow(() -> new UserNotFoundException(request.username()));
 
-        Course course = courseRepository.findByCodeAndStatus(request.courseCode(), StatusCourseEnum.ACTIVE)
+        var course = courseRepository.findByCodeAndStatus(request.courseCode(), StatusCourseEnum.ACTIVE)
                 .orElseThrow(() -> new ActiveCourseNotFoundException(request.courseCode()));
 
         if (request.rating() <= 6) {
@@ -52,7 +51,7 @@ public class ReviewService {
     }
 
     private void sendEmail(ReviewRequest request, Course course) {
-        String body = """
+        var body = """
                 You received a review in the course %s!
                 
                 Rating: %s
@@ -81,8 +80,8 @@ public class ReviewService {
     private Map<String, List<Integer>> groupReviewsByCourseCode(List<Review> reviews) {
         Map<String, List<Integer>> reviewsByCourseId = new HashMap<>();
 
-        for (Review review : reviews) {
-            String courseId = review.getCourse().getCode();
+        for (var review : reviews) {
+            var courseId = review.getCourse().getCode();
             int rating = review.getRating();
 
             reviewsByCourseId.computeIfAbsent(courseId, k -> new ArrayList<>())
@@ -101,7 +100,7 @@ public class ReviewService {
             String courseCode = entry.getKey();
             List<Integer> ratings = entry.getValue();
 
-            Integer nps = calculate(ratings);
+            var nps = calculate(ratings);
 
             coursesNps.add(CourseNpsResponse.builder()
                     .courseCode(courseCode)
