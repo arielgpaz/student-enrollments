@@ -2,7 +2,7 @@ version: '2'
 
 services:
   student-enrollments:
-    image: 'student-enrollments:1.0.0'
+    image: 'arielgpaz/student-enrollments:1.0.0'
     build:
       context: .
     container_name: student-enrollments
@@ -15,6 +15,8 @@ services:
       - SPRING_DATASOURCE_USERNAME=se_db_user
       - SPRING_DATASOURCE_PASSWORD=se_db_2024
       - FLYWAY_URL=jdbc:mysql://se_db:3306/se_db
+    networks:
+      - my-network
 
   se_db:
     image: "mysql:8.0"
@@ -26,3 +28,9 @@ services:
       - MYSQL_USER=se_db_user
       - MYSQL_PASSWORD=se_db_2024
       - MYSQL_ROOT_PASSWORD=se_db_2024
+    networks:
+      - my-network
+
+networks:
+    my-network:
+      driver: bridge
